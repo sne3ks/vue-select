@@ -1,28 +1,45 @@
 module.exports = {
-	props: {
+    
+    props: {
 
+        /**
+         *  Override vue-select default texts. 
+         *  By default vue-select will use theses values  
+         *  
+         *  noResults : "Sorry no matching options."
+         *  loading : "Loading..."
+         *  searchOption : "Search for options"
+         *  clearSelection : "Clear selection"
+         *  
+         *  @type {Object}
+         */
         texts : {
             type: Object, 
-            default : () => ({})
+            default : () => ({}),
         },
         
     },
 
-    data() {
-        return {
-            defaultTexts : {
+    computed: {
+
+        /**
+         *  Return a dictionnary of text value to 
+         *  use. Default texts are overriding by 
+         *  texts prop. 
+         * 
+         *  @returns {Object}
+         */
+        textValues(){
+
+            var defaultTexts = {
                 noResults : "Sorry, no matching options.", 
                 loading : "Loading...",
                 searchOption : "Search for options",
                 clearSelection : "Clear selection"
             }
-        }
-    },
 
-    computed: {
-        textValues(){
             return {
-                ...this.defaultTexts,
+                ...defaultTexts,
                 ...this.texts
             }
         }
